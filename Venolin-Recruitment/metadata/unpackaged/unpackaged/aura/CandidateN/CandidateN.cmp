@@ -1,0 +1,32 @@
+<aura:component
+  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+  access="global" controller="CandidateSelection"
+>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <aura:attribute name="CandidateList" type="List" />
+
+  <lightning:card title="Selected Candidate List">
+    <aura:iteration items="{!v.CandidateList}" var="con">
+      <lightning:tile label="{!con.Candidate__r.Name}" href="r/Candiate__c/a025g000003n8kwAAA/view" >
+        <aura:set attribute="media">
+          <lightning:icon iconName="standard:groups" />
+        </aura:set>
+        <dl class="slds-dl_horizontal">
+          <dt class="slds-dl_horizontal__label">
+            <p class="slds-truncate" title="FirstName">First Name:</p>
+          </dt>
+          <dd class="slds-dl_horizontal__detail slds-tile__meta">
+            <p class="slds-truncate" title="firstName">{!con.Candidate__r.First_Name__c}</p>
+          </dd>
+          <dt class="slds-dl_horizontal__label">
+            <p class="slds-truncate" title="Email">Email:</p>
+          </dt>
+          <dd class="slds-dl_horizontal__detail slds-tile__meta">
+            <p class="slds-truncate" title="emailId">{!con.Candidate__r.Email_ID__c}</p>
+          </dd>
+        </dl>
+      </lightning:tile>
+    </aura:iteration>
+  </lightning:card>
+</aura:component>

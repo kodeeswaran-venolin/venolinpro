@@ -1,0 +1,45 @@
+<aura:component
+  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction"
+  access="global"
+  controller="CandidateSelection"
+>
+  <aura:attribute name="candidates" type="Candiate__c[]" />
+  <aura:attribute name="myColumns" type="List" />
+  <aura:attribute name="selectionCandidate" type="List" />
+
+  <aura:attribute name="L1Selected" type="Integer" />
+
+  <aura:attribute name="Selected" type="String" />
+
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <lightning:card>
+    <li class="blue">No of Selected:{!v.Selected}</li>
+    <lightning:button
+      label="Status on Selected"
+      variant="Neutral"
+      onclick="{!c.statusOfSelected}"
+    />
+
+    <li class="blue">No of L1Selected:{!v.L1Selected}</li>
+    <lightning:button
+      label="Status on L1Selected"
+      variant="Neutral"
+      onclick="{!c.statusOfL1Selected}"
+    />
+
+    <li class="blue">List of Matched SkillSet Candidates</li>
+    <lightning:dataTable
+      data="{!v.candidates}"
+      columns="{!v.myColumns}"
+      keyField="id"
+      onrowselection="{! c.updateSelectedText }"
+    />
+    <lightning:button
+      variant="brand-outline"
+      label="Add to position"
+      title="Add to Position"
+      onclick="{! c.handleClick }"
+    />
+  </lightning:card>
+</aura:component>

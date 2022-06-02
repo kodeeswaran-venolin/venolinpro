@@ -1,0 +1,18 @@
+<aura:component implements="force:hasRecordId,force:lightningQuickAction">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="lead" type="Lead__c"/>
+    <aura:attribute name="message" type="String" />
+    <aura:attribute name="recordId" type="String" />
+     <aura:attribute name="successCheck" type="boolean" default="false"/>
+    <aura:attribute name="errorCheck" type="boolean" default="false"/>
+    
+
+    <aura:if isTrue="{!v.successCheck}">
+    <div class="slds-text-color_success"> {!v.message}</div>    
+    </aura:if>
+    
+    <aura:if isTrue="{!v.errorCheck}">
+    <div class="slds-text-color_error"> {!v.message}</div>    
+    </aura:if>
+
+</aura:component>
